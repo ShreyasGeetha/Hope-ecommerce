@@ -8,7 +8,8 @@ const ProductDescription = () => {
 
   const setProdDescription = async (e) => {
     console.log('description being typed is ', e.target.value)
-    if (e.target.value === "") {
+    if (e.target.value === '') {
+      console.log('product description is empty')
       await dispatch(setProductDescriptionValidation(false))
     } else {      
       await dispatch(setProductDescription(e.target.value))

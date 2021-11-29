@@ -95,7 +95,11 @@ const updateUserProfile = asyncHandler( async (req, res) => {
   if (user) {
     user.name = req.body.name || user.name
     user.email = req.body.email || user.email
+  
+    const { password } = req.body.password
+      console.log('does it have password', req.body)
     if (req.body.password) {
+      console.log('does it have password1', password)
       user.password = req.body.password   
     }
     
@@ -110,6 +114,7 @@ const updateUserProfile = asyncHandler( async (req, res) => {
       isAdmin: UpdatedUser.isAdmin,
       token: generateToken(UpdatedUser._id)
     })
+    
   } else {
     res.status(404)
     throw new Error('User not found')

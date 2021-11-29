@@ -17,7 +17,7 @@ const ProductPhoto = () => {
     console.log(prodImage);
 
     
-
+    console.log('product upload image local', file)
     //send product image to dispatch
     await dispatch(setProductImage(file))
     //formatdata in actions

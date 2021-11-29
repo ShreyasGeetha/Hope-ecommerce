@@ -23,12 +23,15 @@ const createProduct = asyncHandler( async (req, res) => {
   const createdProduct = await product.save()
   console.log('the created product object is: ',createdProduct)
   res.status(201)
-  res.json(createdProduct)
+  res.json([
+    { status: 201 },
+    createdProduct
+  ])
 
 })
 
 const uploadProductImageToS3 = asyncHandler(async (req, res) => {
-  console.log('S3 Product upload function ready', req)
+ // console.log('S3 Product upload function ready', req)
   
   const result = await uploadFileToS3(req.file)
   console.log('S3 info able to fetch1', result)

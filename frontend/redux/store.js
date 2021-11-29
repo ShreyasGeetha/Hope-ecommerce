@@ -189,6 +189,12 @@ const initialState = {
   productName: {
     success: false
   },
+  productDescription: {
+    success: false
+  },
+  productDropLocation: {
+    success: false
+  },
   productBrand: {
     success: false
   },

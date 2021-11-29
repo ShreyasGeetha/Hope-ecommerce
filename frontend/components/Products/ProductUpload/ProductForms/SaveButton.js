@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { errorProductBrand, errorProductCategory, errorProductColor, errorProductDescription, errorProductDropLocation, errorProductName, errorProductPickupTime, errorProductSize, getProductImageS3Link } from "../../../../redux/actions/productUploadActions";
 
@@ -19,6 +20,8 @@ const SaveButton = () => {
   const {userInfo} = userLogin
   const dispatch = useDispatch();
 
+  const [isEnabled, setIsEnabled] = useState(true)
+  const res = []
   const productUploadSaveHandler = async (e) => {
     e.preventDefault()
     // const config = {
@@ -30,9 +33,10 @@ const SaveButton = () => {
     //     '/api/products', {name:'hello'},
     //   config)
     // console.log('upload products',data)
-    console.log("save button clicked",productImageAlt)
-    await dispatch(getProductImageS3Link(productImage.value))
-    if (createProductImage.productImage !== '') {
+    //console.log("save button clicked",productImage.value)
+    const result = await dispatch(getProductImageS3Link(productImage.value))
+    console.log('result upload of S3', result)
+    if (!createProductImage.loading) {
       const prod = {
         name: productName.value,
         brand: productBrand.value,
@@ -52,13 +56,13 @@ const SaveButton = () => {
         'Content-Type': 'application/json'
       }      
     }
- 
-    const {data} = await axios.post(
+ console.log("save button clicked",prod)
+     res = await axios.post(
       '/api/products',
       prod,
       config)
-      console.log('has all the product data been collected', prod)
     }
+    // console.log('created product with data',res)
     
 
 
@@ -110,13 +114,24 @@ const SaveButton = () => {
 
   return (
     <>
+      {productName.success &&
+        productBrand.success &&
+        productColor.success &&
+        productSize.success &&
+        productCategory.success &&
+        productDescription.success &&
+        productImage.success &&
+        productImageAlt.success &&
+        productPickupTime.success &&
+        productDropLocation.success &&
+        productImage.success &&
       <button
-        type="submit"
+        type="submit" 
         onClick={productUploadSaveHandler}
         className="ml-3 inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-gray-50 hover:bg-header  focus:ring-2 focus:ring-offset-2 hover:text-white focus:ring-header"
       >
             Save
-          </button>
+      </button>}
     </>
   );
 }

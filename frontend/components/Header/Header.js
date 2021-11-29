@@ -186,13 +186,7 @@ const Header = () => {
                             </a>
                           </Link>
                         </div> 
-                        <div className="hover:bg-gray-100 group border-2 bg-header">
-                        <button
-                          type="button"                          
-                          className="block py-2 px-4 text-sm text-white group-hover:text-header  ">
-                          Settings
-                        </button>
-                        </div> 
+                        
                         <div className="hover:bg-gray-100  group border-2 bg-header">
                         <Link href="/">
                           <a>
@@ -263,13 +257,7 @@ const Header = () => {
                   </a>
                   </Link>
                 </div> 
-                  <div className="hover:bg-gray-100 group border-2">
-                  <button
-                    type="button"                          
-                    className="block py-2 px-4 text-sm text-gray-50 group-hover:text-header">
-                    Settings
-                  </button>
-                  </div> 
+                  
                   <div className="hover:bg-gray-100 group border-2">
                   <Link href="/">
                     <a>
@@ -284,39 +272,41 @@ const Header = () => {
                   </div>             
                 </div>}
               
-              {userLogged && <div className="border-b-2 border-t-1">
-                    <Link href="/cart/Cart">
-                    <a             
-                      className="ml-0.5 group flex-shrink-0  rounded-full p-1 text-gray-400 hover:text-gray-500 "
-                    >                                                
-                      <button className="py-2.5 px-3.5 relative border-2 border-transparent text-gray-50 rounded-full hover:text-white  group-hover:bg-white focus:outline-none focus:text-gray-50 transition duration-150 ease-in-out" aria-label="Cart">
-                        <svg className="h-6 w-6 group-hover:text-header" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                          <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              <div className="flex ">
+                {userLogged && <div className="border-b-2 border-t-1">
+                      <Link href="/cart/Cart">
+                      <a             
+                        className="ml-0.5 group flex-shrink-0  rounded-full p-1 text-gray-400 hover:text-gray-500 "
+                      >                                                
+                        <button className="py-2.5 px-3.5 relative border-2 border-transparent text-gray-50 rounded-full hover:text-white  group-hover:bg-white focus:outline-none focus:text-gray-50 transition duration-150 ease-in-out" aria-label="Cart">
+                          <svg className="h-6 w-6 group-hover:text-header" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                          </svg>
+                          <span className="absolute  inset-0 object-right-top -mr-7 -mr-1 -mt-2">
+                            <div className="inline-flex group-hover:text-header
+                              items-center   rounded-full  text-sm font-semibold leading-4  text-white">
+                              {cartItems.length}
+                            </div>
+                          </span>
+                        </button>
+                      </a>
+                      </Link>
+                </div>}
+                
+                {userLogged &&
+                  <div className="group ml-auto">
+                  <Link href="/orders/myorders">
+                    <a>
+                      <button className="bg-grey-light rounded-lg group-hover:bg-gray-50 font-bold py-2 px-4  inline-flex items-center">
+                        <svg className="h-7 w-7 group-hover:bg-gray-50 group-hover:text-header bg-header text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLlinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                         </svg>
-                        <span className="absolute  inset-0 object-right-top -mr-7 -mr-1 -mt-2">
-                          <div className="inline-flex group-hover:text-header
-                            items-center   rounded-full  text-sm font-semibold leading-4  text-white">
-                            {cartItems.length}
-                          </div>
-                        </span>
+                        <span className="group-hover:text-header text-white ml-1">My Orders</span>
                       </button>
                     </a>
-                    </Link>
-              </div>}
-              
-              {userLogged &&
-                <div className="group">
-                <Link href="/orders/myorders">
-                  <a>
-                    <button className="bg-grey-light rounded-lg group-hover:bg-gray-50 font-bold py-2 px-4  inline-flex items-center">
-                      <svg className="h-7 w-7 group-hover:bg-gray-50 group-hover:text-header bg-header text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLlinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                      </svg>
-                      <span className="group-hover:text-header text-white ml-1">My Orders</span>
-                    </button>
-                  </a>
-                </Link>
-                </div>}
+                  </Link>
+                  </div>}
+                </div>
             </Popover.Panel>
           </>
         )}
