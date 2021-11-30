@@ -44,7 +44,7 @@ const ProductScreen = ({productId}) => {
         await dispatch(listProductDetails(productId))
       }
     }
-   // getProductDetails()
+    getProductDetails()
   
   },[productId,userLogin])
 
