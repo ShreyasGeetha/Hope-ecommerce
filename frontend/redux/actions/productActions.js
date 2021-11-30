@@ -27,7 +27,7 @@ export const listProducts = () => async (dispatch, getState) =>{
 export const listProductDetails = (id) => async (dispatch, getState) =>{
   try {
     dispatch({ type: PRODUCT_DETAILS_REQUEST })
-    console.log('222')
+    // console.log('222')
     const { data } = await axios.get(`/api/products/${id}`);
     dispatch({
       type: PRODUCT_DETAILS_SUCCESS,
@@ -51,7 +51,7 @@ export const deleteProductFromDB = (productId) => async (dispatch, getState) =>{
       type: PRODUCT_DELETE_REQUEST
     })
     
-     console.log('do we get the id here1',productId )
+    //  console.log('do we get the id here1',productId )
     const { userLogin: { userInfo } } = getState()
     const userId = userInfo._id
     
@@ -73,7 +73,7 @@ export const deleteProductFromDB = (productId) => async (dispatch, getState) =>{
       type: PRODUCT_DELETE_SUCCESS,
       payload: data
      })
-    console.log('what did we get after deleting a product',data)
+    // console.log('what did we get after deleting a product',data)
     
     dispatch({ type: PRODUCT_LIST_REQUEST })
     
@@ -112,12 +112,12 @@ export const createProduct = () => async (dispatch, getState) =>{
     const {data} = await axios.post(
       `/api/products`, {},
       config)
-    console.log('HEY')
+    // console.log('HEY')
      dispatch({
       type: PRODUCT_CREATE_SUCCESS,
       payload: data
      })
-    console.log('what did we get after creating a product',data)
+    // console.log('what did we get after creating a product',data)
     
 
   } catch (error) {

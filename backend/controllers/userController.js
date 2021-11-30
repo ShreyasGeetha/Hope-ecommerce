@@ -66,10 +66,10 @@ const registerUser = asyncHandler( async (req, res) => {
 // @route GET /api/users/profile
 // @access  private
 const getUserProfile = asyncHandler( async (req, res) => {
-  //console.log('this function is being called', req)
+  // console.log('this function is being called', req)
   const user = await User.findById(req.user._id)
 // const { email } = req.body;
-//   console.log('This is at Server', email, password)
+  // console.log('This is at Server', email, password)
 //   const user = await await User.findOne({ email })
   // const user1 = await User.find()
   // console.log('will it print all users?', user1)
@@ -97,15 +97,15 @@ const updateUserProfile = asyncHandler( async (req, res) => {
     user.email = req.body.email || user.email
   
     const { password } = req.body.password
-      console.log('does it have password', req.body)
+      // console.log('does it have password', req.body)
     if (req.body.password) {
-      console.log('does it have password1', password)
+      // console.log('does it have password1', password)
       user.password = req.body.password   
     }
     
 
     const UpdatedUser = await user.save();
-    console.log('fetch?', user)
+    // console.log('fetch?', user)
 
     res.json({
       _id: UpdatedUser._id,
@@ -126,14 +126,14 @@ const updateUserProfile = asyncHandler( async (req, res) => {
 // @access  private
 const updateUserProfileImage = asyncHandler(async (req, res) => {
   
-  console.log('Header insider the profile Image update', req)
+  // console.log('Header insider the profile Image update', req)
   
 
   const user = await User.findById(req.user._id)
   if (user) {
-    console.log('User info able to fetch')
+    // console.log('User info able to fetch')
     const result = await uploadFileToS3(req.file)
-    console.log('S3 info able to fetch1', result)
+    // console.log('S3 info able to fetch1', result)
 
     if (result) {
       user.image = result.Location
@@ -147,9 +147,9 @@ const updateUserProfileImage = asyncHandler(async (req, res) => {
       image: UpdatedUser.image,
       token: generateToken(UpdatedUser._id)
       }
-      console.log('sample', updatedUserWithToken)
+      // console.log('sample', updatedUserWithToken)
       if (UpdatedUser) {
-        console.log('S3 info able to fetch', UpdatedUser)
+        // console.log('S3 info able to fetch', UpdatedUser)
         res.send(updatedUserWithToken)
     //     res.json({
     //       _id: UpdatedUser._id,

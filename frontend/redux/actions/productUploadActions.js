@@ -16,7 +16,7 @@ import {
 
 export const productUpload = (prod) => async (dispatch,getState) =>{
   try {
-    console.log('HELLO')
+    // console.log('HELLO')
     dispatch({
       type: PRODUCT_UPLOAD_REQUEST
     })
@@ -27,15 +27,15 @@ export const productUpload = (prod) => async (dispatch,getState) =>{
         Authorization: `Bearer ${userInfo.token}`
       }      
     }
-    //console.log(`token ${userInfo.token}, ${user}`)
-    console.log('at least request sent?')
+    // console.log(`token ${userInfo.token}, ${user}`)
+    // console.log('at least request sent?')
      
     const res = await axios.post(
       '/api/products',
       prod,
       config)
     
-     console.log('created product with data',res)
+    //  console.log('created product with data',res)
         
     dispatch({
       type: PRODUCT_UPLOAD_SUCCESS,
@@ -43,7 +43,7 @@ export const productUpload = (prod) => async (dispatch,getState) =>{
      })
     
   } catch (error) {
-    console.log('error', error.response)
+    // console.log('error', error.response)
     dispatch({
       type: PRODUCT_UPLOAD_FAIL,
       payload: error.response && error.response.data.message
@@ -59,7 +59,7 @@ export const getProductImageS3Link = (image) => async (dispatch, getState) => {
       type: PRODUCT_CREATE_IMAGE_REQUEST
     })
 
-    console.log('product image upload actions in')
+    // console.log('product image upload actions in')
     // set image in right format and send it to server through axios
     const { userLogin: { userInfo } } = getState()
     
@@ -69,7 +69,7 @@ export const getProductImageS3Link = (image) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`
       }      
     }
-    console.log('Update user IMage client side bearer', config, image)
+    // console.log('Update user IMage client side bearer', config, image)
       const picdata = new FormData()
       picdata.append('name', 'dummyname')
       picdata.append('file', image)
@@ -77,7 +77,7 @@ export const getProductImageS3Link = (image) => async (dispatch, getState) => {
       const {data} = await axios.post(
         '/api/products/images', picdata,
         config)
-    console.log('response object', data.Location)
+    // console.log('response object', data.Location)
     
     dispatch({
       type: PRODUCT_CREATE_IMAGE_SUCCESS,

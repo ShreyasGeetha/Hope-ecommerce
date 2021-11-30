@@ -7,9 +7,9 @@ import { uploadFileToS3 } from '../s3.js';
 // @access  public
 const getProducts = asyncHandler( async (req, res) => {
   //All mongoose methods return a promise - either use then or await
-  console.log('product req comes?')
+  // console.log('product req comes?')
   const products = await Product.find({}); //{} will get all the objects
-  console.log('does it process', products)
+  // console.log('does it process', products)
   res.json(products)
 })
 
@@ -17,12 +17,12 @@ const getProducts = asyncHandler( async (req, res) => {
 // @route PUT /api/product
 // @access  private/admin
 const createProduct = asyncHandler( async (req, res) => {
-  console.log('Create Product is ready', req.body)
+  // console.log('Create Product is ready', req.body)
   
   const product = new Product(req.body)
-  console.log('the product object to be created is: ',product)
+  // console.log('the product object to be created is: ',product)
   const createdProduct = await product.save()
-  console.log('the created product object is: ',createdProduct)
+  // console.log('the created product object is: ',createdProduct)
   res.status(201)
   res.json([
     { status: 201 },
@@ -32,10 +32,10 @@ const createProduct = asyncHandler( async (req, res) => {
 })
 
 const uploadProductImageToS3 = asyncHandler(async (req, res) => {
- // console.log('S3 Product upload function ready', req)
+//  console.log('S3 Product upload function ready', req)
   
   const result = await uploadFileToS3(req.file)
-  console.log('S3 info able to fetch1', result)
+  // console.log('S3 info able to fetch1', result)
   res.send(result)
 })
 
@@ -57,9 +57,9 @@ const getProductById = asyncHandler( async (req, res) => {
 // @route DELETE /api/products/:id
 // @access  private/admin
 const deleteProductById = asyncHandler( async (req, res) => {
-  console.log('Delete product Backend - checking req body', req.body)
+  // console.log('Delete product Backend - checking req body', req.body)
   const product = await Product.findById(req.body.productId)
-  console.log('Able to locate the product to be delete?', product)
+  // console.log('Able to locate the product to be delete?', product)
   if (product) {
     await product.remove()
      const products = await Product.find()

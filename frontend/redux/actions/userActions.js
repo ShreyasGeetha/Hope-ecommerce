@@ -52,7 +52,7 @@ export const login = (email, password, isLoggedIn) => async (dispatch) =>{
       { email, password },
       config)
 
-    console.log('Login data', data)
+    // console.log('Login data', data)
    
     dispatch({
       type: USER_LOGIN_SUCCESS,
@@ -94,7 +94,7 @@ export const register = (name, email, password, isLoggedIn) => async (dispatch) 
       {name, email, password },
       config)
     
-     console.log('Register data', data)
+    //  console.log('Register data', data)
     
      dispatch({
       type: USER_REGISTER_SUCCESS,
@@ -129,9 +129,9 @@ export const deletUserFromDB = (userId) => async (dispatch, getState) =>{
       type: USER_DELETE_REQUEST
     })
     
-     console.log('do we get the id here1',userId )
+    //  console.log('do we get the id here1',userId )
     const { userLogin: { userInfo } } = getState()
-    console.log('do we get the id here',userInfo )
+    // console.log('do we get the id here',userInfo )
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ export const deletUserFromDB = (userId) => async (dispatch, getState) =>{
       type: USER_DELETE_SUCCESS,
       payload: data
      })
-    console.log('what did we get after deleting a user',data)
+    // console.log('what did we get after deleting a user',data)
     dispatch({
       type: GET_ALL_USERS_SUCCESS,
       payload: data
@@ -174,7 +174,7 @@ export const logout = () => async (dispatch) => {
   localStorage.removeItem('allUserInfo');
   localStorage.removeItem('isUserLogged');
   try {
-    console.log('logout dispatcher')
+    // console.log('logout dispatcher')
   dispatch({
       type: USER_LOGOUT
   })
@@ -198,20 +198,20 @@ export const setUserName = (userName) => (dispatch) => {
 
 
 export const clearEmail = (email) => (dispatch) => {
-  console.log('Clear Email')
+  // console.log('Clear Email')
   try {
     dispatch({
       type: CLEAR_USER_EMAIL,
       payload: email      
     })
-    console.log('Clear Email1')
+    // console.log('Clear Email1')
   } catch (error) {
     
   }
 }
 
 export const clearPassword = (password) => (dispatch) => {
-  console.log('Clear Password')
+  // console.log('Clear Password')
   try {
     dispatch({
       type: CLEAR_USER_PASSWORD,
@@ -256,7 +256,7 @@ export const getUserDetails = (email) => async (dispatch,getState) =>{
     const {data} = await axios.get(
       `/api/users/${email}`,
       config)
-     console.log('get user details data', data)
+    //  console.log('get user details data', data)
      dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data
@@ -264,7 +264,7 @@ export const getUserDetails = (email) => async (dispatch,getState) =>{
     //localStorage.setItem('userInfo', JSON.stringify(data))
     
   } catch (error) {
-    console.log('error', error.response)
+    // console.log('error', error.response)
     dispatch({
       type: USER_DETAILS_FAIL,
       payload: error.response && error.response.data.message
@@ -276,7 +276,7 @@ export const getUserDetails = (email) => async (dispatch,getState) =>{
 
 export const updateUserProfile = (user) => async (dispatch,getState) =>{
   try {
-    console.log(user)
+    // console.log(user)
     dispatch({
       type: USER_UPDATE_PROFILE_REQUEST
     })
@@ -298,7 +298,7 @@ export const updateUserProfile = (user) => async (dispatch,getState) =>{
      })
     localStorage.setItem('userInfo', JSON.stringify(data))
   } catch (error) {
-    console.log('error', error.response)
+    // console.log('error', error.response)
     dispatch({
       type: USER_DETAILS_FAIL,
       payload: error.response && error.response.data.message
@@ -323,7 +323,7 @@ export const updateUserProfileImage = (image) => async (dispatch, getState) =>{
         Authorization: `Bearer ${userInfo.token}`
       }      
     }
-    console.log('Update user IMage client side bearer', config, image)
+    // console.log('Update user IMage client side bearer', config, image)
       const picdata = new FormData()
       picdata.append('name', 'dummyname')
       picdata.append('file', image)
@@ -331,7 +331,7 @@ export const updateUserProfileImage = (image) => async (dispatch, getState) =>{
       const {data} = await axios.put(
         '/api/users/profile/images', picdata,
         config)
-      console.log('response object', data)
+      // console.log('response object', data)
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
@@ -355,7 +355,7 @@ export const updateUserProfileImage = (image) => async (dispatch, getState) =>{
 }
 
 export const setEmail = (email) => (dispatch) => {
-  console.log(email)
+  // console.log(email)
   try {
     dispatch({
       type: EMAIL,
@@ -372,7 +372,7 @@ export const setEmail = (email) => (dispatch) => {
 
 export const setUserImage = (image) => (dispatch) => {
   try {
-       console.log('Set User Image dispatcher', image)
+      //  console.log('Set User Image dispatcher', image)
     dispatch({
       type: SET_USER_IMAGE,
       payload: image
@@ -398,7 +398,7 @@ export const getAllUsers = () => async (dispatch, getState) => {
     const {data} = await axios.get(
       `/api/users/`,
       config)
-    console.log('did we get data', data)
+    // console.log('did we get data', data)
     dispatch({
       type: GET_ALL_USERS_SUCCESS,
       payload: data
@@ -436,12 +436,12 @@ export const uploadImageToS3 = (image, url) => async (dispatch, getState) => {
       },
       body: image
     }
-    console.log('we get url right?', url)
+    // console.log('we get url right?', url)
     
     const res = await axios.put(
       url,
       config)
-    console.log('do we get an answer from s3?', res)
+    // console.log('do we get an answer from s3?', res)
 
     dispatch({
       type: UPLOAD_IMAGE_S3_SUCCESS,
