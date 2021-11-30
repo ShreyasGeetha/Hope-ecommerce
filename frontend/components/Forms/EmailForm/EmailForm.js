@@ -103,7 +103,7 @@ export default EmailForm;
 //           </div>
 //           {userUpdateProfile.success && <div className="ml-1 -mt-1">
 //             <svg className="h-7 w-7  text-gray-50 bg-header rounded-full " fill="none" viewBox="0 0 24 24" stroke="currentColor">
-//               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+//               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
 //             </svg>
 //           </div>}
 //         </div>
