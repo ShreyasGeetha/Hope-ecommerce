@@ -15,7 +15,6 @@ const SignUpPage = () => {
                       <UserNameForm /> 
                       <EmailForm />
                       <PasswordForm />
-                      <RememberMeForm />
                       <SignUpButton />
                       
                     </form>

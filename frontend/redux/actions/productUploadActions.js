@@ -1,5 +1,5 @@
 import axios from "axios"
-import { PRODUCT_CREATE_IMAGE_FAIL, PRODUCT_CREATE_IMAGE_REQUEST, PRODUCT_CREATE_IMAGE_SUCCESS } from "../types/productTypes"
+import { PRODUCT_CREATE_IMAGE_FAIL, PRODUCT_CREATE_IMAGE_REQUEST, PRODUCT_CREATE_IMAGE_SUCCESS, PRODUCT_UPLOAD_FAIL, PRODUCT_UPLOAD_REQUEST } from "../types/productTypes"
 import {
   SET_PRODUCT_NAME, SET_PRODUCT_BRAND,
   SET_PRODUCT_CATEGORY, SET_PRODUCT_COLOR,
@@ -10,39 +10,42 @@ import {
   DISABLE_ERROR_PRODUCT_CATEGORY, DISABLE_ERROR_PRODUCT_COLOR,
   DISABLE_ERROR_PRODUCT_DESCRIPTION, DISABLE_ERROR_PRODUCT_DROPLOCATION,
   DISABLE_ERROR_PRODUCT_IMAGE, DISABLE_ERROR_PRODUCT_IMAGE_ALT,
-  DISABLE_ERROR_PRODUCT_PICKUP_TIME, DISABLE_ERROR_PRODUCT_SIZE, ERROR_PRODUCT_BRAND, ERROR_PRODUCT_CATEGORY, ERROR_PRODUCT_COLOR, ERROR_PRODUCT_DESCRIPTION, ERROR_PRODUCT_DROPLOCATION, ERROR_PRODUCT_IMAGE, ERROR_PRODUCT_IMAGE_ALT, ERROR_PRODUCT_PICKUP_TIME, ERROR_PRODUCT_SIZE, SET_PRODUCT_VALIDATOR, SET_PRODUCT_NAME_VALIDATOR, SET_PRODUCT_BRAND_VALIDATOR, SET_PRODUCT_CATEGORYE_VALIDATOR, SET_PRODUCT_COLOR_VALIDATOR, SET_PRODUCT_DESCRIPTION_VALIDATOR, SET_PRODUCT_DROPLOCATION_VALIDATOR, SET_PRODUCT_PRODUCT_IMAGE_VALIDATOR, SET_PRODUCT_PICKUP_TIME_VALIDATOR, SET_PRODUCT_SIZE_VALIDATOR, SET_PRODUCT_IMAGE_ALT_VALIDATOR,
+  DISABLE_ERROR_PRODUCT_PICKUP_TIME, DISABLE_ERROR_PRODUCT_SIZE, ERROR_PRODUCT_BRAND, ERROR_PRODUCT_CATEGORY, ERROR_PRODUCT_COLOR, ERROR_PRODUCT_DESCRIPTION, ERROR_PRODUCT_DROPLOCATION, ERROR_PRODUCT_IMAGE, ERROR_PRODUCT_IMAGE_ALT, ERROR_PRODUCT_PICKUP_TIME, ERROR_PRODUCT_SIZE, SET_PRODUCT_VALIDATOR, SET_PRODUCT_NAME_VALIDATOR, SET_PRODUCT_BRAND_VALIDATOR, SET_PRODUCT_CATEGORYE_VALIDATOR, SET_PRODUCT_COLOR_VALIDATOR, SET_PRODUCT_DESCRIPTION_VALIDATOR, SET_PRODUCT_DROPLOCATION_VALIDATOR, SET_PRODUCT_PRODUCT_IMAGE_VALIDATOR, SET_PRODUCT_PICKUP_TIME_VALIDATOR, SET_PRODUCT_SIZE_VALIDATOR, SET_PRODUCT_IMAGE_ALT_VALIDATOR, PRODUCT_UPLOAD_SUCCESS,
 } from "../types/productUploadTypes"
 
 
-export const productUpload = (user) => async (dispatch,getState) =>{
+export const productUpload = (prod) => async (dispatch,getState) =>{
   try {
-    console.log(user)
+    console.log('HELLO')
     dispatch({
       type: PRODUCT_UPLOAD_REQUEST
     })
-
-   const { userLogin:{userInfo} } = getState()
+    const { userLogin:{userInfo} } = getState()
     const config = {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`
       }      
     }
-    console.log(`token ${userInfo.token}, ${user}`)
-   console.log('length', user.length)
-    const {data} = await axios.put(
-      `/api/users/profile`, user,
+    //console.log(`token ${userInfo.token}, ${user}`)
+    console.log('at least request sent?')
+     
+    const res = await axios.post(
+      '/api/products',
+      prod,
       config)
     
-     dispatch({
-      type: PRODUCT_UPLOAD_REQUEST,
-      payload: data
+     console.log('created product with data',res)
+        
+    dispatch({
+      type: PRODUCT_UPLOAD_SUCCESS,
+      payload: true
      })
     
   } catch (error) {
     console.log('error', error.response)
     dispatch({
-      type: PRODUCT_UPLOAD_REQUEST,
+      type: PRODUCT_UPLOAD_FAIL,
       payload: error.response && error.response.data.message
         ? error.response.data.message
         : error.response
@@ -432,6 +435,22 @@ export const setProductSize = (productSize) => (dispatch) => {
     
   }
 }
+
+/**
+ * 
+ * @returns 
+ */
+export const setProductUploadSuccess = (uploadSuccess) => (dispatch) => {
+  try {
+    dispatch({
+      type: PRODUCT_UPLOAD_SUCCESS,
+      payload: uploadSuccess
+    })
+    
+  } catch (error) {
+    
+  }
+} 
 
 /**
  * error Product Name

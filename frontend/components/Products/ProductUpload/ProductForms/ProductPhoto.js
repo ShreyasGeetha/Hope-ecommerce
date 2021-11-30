@@ -1,13 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {useDispatch, useSelector} from 'react-redux'
-import { setProductImage } from "../../../../redux/actions/productUploadActions";
+import { getProductImageS3Link, setProductImage } from "../../../../redux/actions/productUploadActions";
 
 const ProductPhoto = () => {
 
   const [prodImage, setProdImage] = useState('')
   const userLogin = useSelector(state => state.userLogin)
-  const {userInfo} = userLogin
+  const { userInfo } = userLogin
+  const createProductImage = useSelector(state => state.createProductImage)
+
   const dispatch = useDispatch()
 
   const productImage = async (e) => {
@@ -16,10 +18,11 @@ const ProductPhoto = () => {
     setProdImage(URL.createObjectURL(e.target.files[0]))
     console.log(prodImage);
 
-    
-    console.log('product upload image local', file)
+    const result = await dispatch(getProductImageS3Link(file))
+    console.log('result upload of S3', result)
+    console.log('product upload image local', createProductImage.productImage)
     //send product image to dispatch
-    await dispatch(setProductImage(file))
+    await dispatch(setProductImage(createProductImage.productImage))
     //formatdata in actions
 
     //send it through axios to get s3 link

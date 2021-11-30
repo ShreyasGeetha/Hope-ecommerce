@@ -29,7 +29,7 @@ const ProductsPage = () => {
   useEffect(() => {
     const getProducts = async () => {
        
-      await dispatch(listProducts());
+     await dispatch(listProducts());
       
     }
     getProducts();
@@ -44,9 +44,9 @@ const ProductsPage = () => {
         : error
           ? (<h3>{error}</h3>)
           : (                
-            <div className="max-w-2xl mx-auto py-1 px-4 sm:py-1 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div className="max-w-4xl mx-auto py-1 px-4 sm:py-1 sm:px-6 lg:max-w-7xl lg:px-8">
               {console.log('what product details are we getting', products)}
-        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8">
+        <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-9">
           {products.map((product) => (
              product.isVisible && <div key={product._id} className="group relative">
               <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 md:h-80  sm:h-80 lg:aspect-none">

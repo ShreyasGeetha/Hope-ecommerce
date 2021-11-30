@@ -53,7 +53,7 @@ const CategoryFilter = () => {
     <div className="bg-white">
       <div>
         {/* Mobile filter dialog */}
-        <Transition.Root show={mobileFiltersOpen} as={Fragment}>
+        {/* <Transition.Root show={mobileFiltersOpen} as={Fragment}>
           <Dialog as="div" className="fixed inset-0 flex z-40 lg:hidden" onClose={setMobileFiltersOpen}>
             <Transition.Child
               as={Fragment}
@@ -89,7 +89,7 @@ const CategoryFilter = () => {
                   </button>
                 </div>
 
-                {/* Filters */}
+                
                 <form className="mt-4">
                   {filters.map((section) => (
                     <Disclosure as="div" key={section.name} className="border-t border-gray-200 pt-4 pb-4">
@@ -135,7 +135,7 @@ const CategoryFilter = () => {
               </div>
             </Transition.Child>
           </Dialog>
-        </Transition.Root>
+        </Transition.Root> */}
 
         <main className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <div className="border-b border-gray-200 pb-10">
@@ -145,8 +145,8 @@ const CategoryFilter = () => {
             </p>
           </div>
 
-          <div className="pt-12 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
-            <aside>
+          <div >
+            {/* <aside>
               <h2 className="sr-only">Filters</h2>
 
               <button
@@ -185,7 +185,7 @@ const CategoryFilter = () => {
                   ))}
                 </form>
               </div>
-            </aside>
+            </aside> */}
 
             {/* Product grid */}
             <div className="mt-6 lg:mt-0 lg:col-span-2 xl:col-span-3">

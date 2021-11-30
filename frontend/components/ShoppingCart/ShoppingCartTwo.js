@@ -133,6 +133,7 @@ const ShoppingCartTwo = () => {
                   </button>
                 </a>
               </Link>
+              <img src="/bean.jpeg" alt="" />
             </div>}
 
             {!cart.isCartEmpty && <div className="mt-6 text-sm text-center">

@@ -1,4 +1,4 @@
-import { PRODUCT_CREATE_IMAGE_FAIL, PRODUCT_CREATE_IMAGE_REQUEST, PRODUCT_CREATE_IMAGE_SUCCESS } from "../../types/productTypes"
+import { PRODUCT_CREATE_IMAGE_FAIL, PRODUCT_CREATE_IMAGE_REQUEST, PRODUCT_CREATE_IMAGE_SUCCESS, PRODUCT_UPLOAD_FAIL, PRODUCT_UPLOAD_REQUEST } from "../../types/productTypes"
 import {
   DISABLE_ERROR_PRODUCT_BRAND,
   DISABLE_ERROR_PRODUCT_CATEGORY,
@@ -10,6 +10,7 @@ import {
   DISABLE_ERROR_PRODUCT_NAME,
   DISABLE_ERROR_PRODUCT_PICKUP_TIME,
   DISABLE_ERROR_PRODUCT_SIZE,
+  DISABLE_PRODUCT_UPLOAD_SUCCESS,
   ERROR_PRODUCT_BRAND,
   ERROR_PRODUCT_CATEGORY,
   ERROR_PRODUCT_COLOR,
@@ -20,6 +21,7 @@ import {
   ERROR_PRODUCT_NAME,
   ERROR_PRODUCT_PICKUP_TIME,
   ERROR_PRODUCT_SIZE,
+  PRODUCT_UPLOAD_SUCCESS,
   SET_PRODUCT_BRAND, SET_PRODUCT_BRAND_VALIDATOR, SET_PRODUCT_CATEGORY,
   SET_PRODUCT_CATEGORYE_VALIDATOR,
   SET_PRODUCT_COLOR, SET_PRODUCT_COLOR_VALIDATOR, SET_PRODUCT_DESCRIPTION,
@@ -141,6 +143,20 @@ export const setProductSizeReducer = (state = {}, action) => {
       return state
   }
 }
+
+export const setProductUploadSuccessReducer = (state = {}, action) => {
+  switch (action.type) {
+    case PRODUCT_UPLOAD_REQUEST:
+      return {loading: true}
+    case PRODUCT_UPLOAD_SUCCESS:
+      return {loading: false, success: action.payload }
+    case PRODUCT_UPLOAD_FAIL:
+      return {loading: false, error: action.payload} 
+    default:
+      return state
+  }
+}
+
 
 export const productNameErrorReducer = (state = {}, action) => {
   switch (action.type) {

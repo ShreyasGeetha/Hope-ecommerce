@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { errorProductBrand, errorProductCategory, errorProductColor, errorProductDescription, errorProductDropLocation, errorProductName, errorProductPickupTime, errorProductSize, getProductImageS3Link } from "../../../../redux/actions/productUploadActions";
+import {
+  productUpload,
+  setProductUploadSuccess
+} from "../../../../redux/actions/productUploadActions";
+import SuccessfulProductUploadModal from "../SuccessfulProductUploadModal";
 
 const SaveButton = () => {
 
@@ -20,22 +24,11 @@ const SaveButton = () => {
   const {userInfo} = userLogin
   const dispatch = useDispatch();
 
-  const [isEnabled, setIsEnabled] = useState(true)
   const res = []
   const productUploadSaveHandler = async (e) => {
     e.preventDefault()
-    // const config = {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   }      
-    // }
-    // const {data} = await axios.post(
-    //     '/api/products', {name:'hello'},
-    //   config)
-    // console.log('upload products',data)
-    //console.log("save button clicked",productImage.value)
-    const result = await dispatch(getProductImageS3Link(productImage.value))
-    console.log('result upload of S3', result)
+    
+    
     if (!createProductImage.loading) {
       const prod = {
         name: productName.value,
@@ -51,65 +44,9 @@ const SaveButton = () => {
         isVisible: true,
         user: userInfo._id,        
       }
-      const config = {
-      header: {
-        'Content-Type': 'application/json'
-      }      
+    await dispatch(productUpload(prod))
     }
- console.log("save button clicked",prod)
-     res = await axios.post(
-      '/api/products',
-      prod,
-      config)
-    }
-    // console.log('created product with data',res)
-    
 
-
-    // var validation = true;
-    // if (productName) {
-    //   console.log('this prints and works')
-    // } else {
-    //   console.log('illappa work agtailla')
-    // }
-    // if (productName.productName === '' || productName === '') {
-    //   await dispatch(errorProductName())
-    //   validation = false
-    // }
-    // if (productBrand.productBrand === '' || productBrand === '') {
-    //   await dispatch(errorProductBrand())
-    //   validation = false
-    // }
-    // if (productCategory.productCategory === '' || productCategory === 'Choose Category') {
-    //   await dispatch(errorProductCategory())
-    //   validation = false
-    // }
-    // if (productColor.productColor === '' || productColor === 'Select Color') {
-    //   await dispatch(errorProductColor())
-    //   validation = false
-    // }
-    // if (productSize.productSize === '' || productSize === 'Select Size') {
-    //   await dispatch(errorProductSize())
-    //   validation = false
-    // }
-    // if (productPickupTime.productPickupTime === '' || productPickupTime === 'Select Pickup Time') {
-    //   await dispatch(errorProductPickupTime())
-    //   validation = false
-    // }
-    // if (productDescription.productDescription === '' || productDescription === '') {
-    //   await dispatch(errorProductDescription())
-    //   validation = false
-    // }
-    // if (productDropLocation.productDropLocation === '' || productDropLocation === '') {
-    //   await dispatch(errorProductDropLocation())
-    //   validation = false
-    // }
-    // if (validation) {
-    //   console.log('all fields are updated')
-    // } else {
-    //   console.log('Hey, fill in Mandatory fields')
-    // }
-    // console.log('The chosen product Category is: ', productCategory)
   }
 
   return (
@@ -131,7 +68,8 @@ const SaveButton = () => {
         className="ml-3 inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-gray-50 hover:bg-header  focus:ring-2 focus:ring-offset-2 hover:text-white focus:ring-header"
       >
             Save
-      </button>}
+        </button>}
+      <SuccessfulProductUploadModal />
     </>
   );
 }

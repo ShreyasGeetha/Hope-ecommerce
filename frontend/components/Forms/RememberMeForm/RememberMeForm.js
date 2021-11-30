@@ -16,7 +16,6 @@ const RememberMeForm = () => {
           </label>
         </div>
 
-        <ForgotPassword />
       </div>
     </>
   );

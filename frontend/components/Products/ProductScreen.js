@@ -44,7 +44,7 @@ const ProductScreen = ({productId}) => {
         await dispatch(listProductDetails(productId))
       }
     }
-    getProductDetails()
+   // getProductDetails()
   
   },[productId,userLogin])
 
@@ -157,13 +157,14 @@ const ProductScreen = ({productId}) => {
                   dangerouslySetInnerHTML={{ __html: product.description }}
                 />
               </div>
+              
+              
               <div className="mt-10">
                 <h2 className="text-sm font-medium text-gray-900">Pickup Location</h2>
 
-                <div
-                  className="mt-4 prose prose-sm text-gray-500"
-                  dangerouslySetInnerHTML={{ __html: product.dropLocation }}
-                />
+                <div className="mt-6 space-y-4 sm:mt-0 sm:ml-0 sm:flex-none sm:w-40">
+                 {product.dropLocation}                  
+              </div>
               </div>  
             </div>           
           </div>

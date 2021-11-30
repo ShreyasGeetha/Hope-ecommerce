@@ -20,7 +20,7 @@ import {
 } from './reducers/Forms/FormReducer'
 import {
   createProductImageReducer,
-  productBrandErrorReducer, productCategoryErrorReducer, productColorErrorReducer, productDescriptionErrorReducer, productDropLocationErrorReducer, productImageAltErrorReducer, productImageErrorReducer, productNameErrorReducer, productPickupTimeErrorReducer, productSizeErrorReducer, setProductBrandReducer, setProductCategoryReducer, setProductColorReducer, setProductDescriptionReducer, setProductDropLocationReducer, setProductImageAltReducer, setProductImageReducer, setProductNameReducer, setProductPickupTimeReducer, setProductSizeReducer
+  productBrandErrorReducer, productCategoryErrorReducer, productColorErrorReducer, productDescriptionErrorReducer, productDropLocationErrorReducer, productImageAltErrorReducer, productImageErrorReducer, productNameErrorReducer, productPickupTimeErrorReducer, productSizeErrorReducer, setProductBrandReducer, setProductCategoryReducer, setProductColorReducer, setProductDescriptionReducer, setProductDropLocationReducer, setProductImageAltReducer, setProductImageReducer, setProductNameReducer, setProductPickupTimeReducer, setProductSizeReducer, setProductUploadSuccessReducer
 } from './reducers/products/productUploadReducer';
 import { s3UploadImageReducer } from './reducers/S3/S3';
 
@@ -71,7 +71,8 @@ const reducer = combineReducers({
   productImageError: productImageErrorReducer,
   productImageAltError: productImageAltErrorReducer,
   productPickupTimeError: productPickupTimeErrorReducer,
-  productSizeError: productSizeErrorReducer
+  productSizeError: productSizeErrorReducer,
+  productUploadSuccess: setProductUploadSuccessReducer
 })
 
 const cartItemsFromStorage = [{}]
@@ -142,6 +143,9 @@ const initialState = {
   userLogged: loginInfoFromStorage,
   currentProduct: currentProductFromStorage,
   orderCreate: orderItemsFromStorage,
+  orderListMy: {
+    success: false
+  },
   userUpdateProfile: {
     loading: false,
     success: false,
@@ -199,6 +203,13 @@ const initialState = {
     success: false
   },
   productImageAlt: {
+    success: false
+  },
+  cart: {
+    isCartEmpty: true,
+    cartItems: []
+  },
+  productUploadSuccess: {
     success: false
   }
 }

@@ -7,8 +7,9 @@ import { uploadFileToS3 } from '../s3.js';
 // @access  public
 const getProducts = asyncHandler( async (req, res) => {
   //All mongoose methods return a promise - either use then or await
+  console.log('product req comes?')
   const products = await Product.find({}); //{} will get all the objects
-  
+  console.log('does it process', products)
   res.json(products)
 })
 
