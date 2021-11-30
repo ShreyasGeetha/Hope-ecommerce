@@ -144,6 +144,7 @@ const initialState = {
   currentProduct: currentProductFromStorage,
   orderCreate: orderItemsFromStorage,
   orderListMy: {
+    loading: true,
     success: false
   },
   userUpdateProfile: {

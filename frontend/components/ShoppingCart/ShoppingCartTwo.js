@@ -122,12 +122,12 @@ const ShoppingCartTwo = () => {
               </Link>
             </div>}
 
-            {cart.isCartEmpty && <div className="mt-10">
+            {cart.isCartEmpty && <div className="mt-10 mb-10">
               <Link href="/">
                 <a>
                   <button
                     type="submit"                    
-                    className="w-full bg-header border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-header"
+                    className="w-full bg-header border border-transparent rounded-md shadow-sm py-3 px-4 font-medium mb-5 text-white hover:bg-green-700 focus:outline-none focus:ring-2 md:text-2xl focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-header"
                   >
                     Start Shopping
                   </button>

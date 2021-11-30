@@ -27,6 +27,11 @@ app.use('/api/orders/',orderRoutes)
 //   res.send({url})
 // })
 
+app.get('/api/orders/myorders', (req, res) => {
+  const actualPage = '/orders/myorders'
+  app.render(req,res,actualPage)
+})
+
 const __dirname = path.resolve()
 
 if (process.env.NODE_ENV === 'production') {
