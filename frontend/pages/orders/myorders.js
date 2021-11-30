@@ -1,12 +1,10 @@
-import Header from "../../components/Header/Header";
-import MyOrder from "../../components/orders/MyOrder";
-import OrderPage from "../../components/orders/OrderPage";
-import Sample from "../../components/orders/Sample";
+
+import MyOrders from "../../components/orders/MyOrders";
 
 const MyOrdersPage = () => {
   return (
     <div>
-      <Sample />
+      <MyOrders />
     </div>
   );
 }

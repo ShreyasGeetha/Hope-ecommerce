@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Loader from '../Loader'
 
 
-const Sample = () => {
+const MyOrders = () => {
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const Sample = () => {
     } else {
       router.push('/');
     } 
-  },[])
+  },[dispatch])
 
 
   return (
@@ -103,4 +103,4 @@ const Sample = () => {
   );
 }
 
-export default Sample;
+export default MyOrders;
